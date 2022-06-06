@@ -5,7 +5,16 @@ default value to be "text" and return the input element inside label. (create it
 
 */
 
-// Your code goes here
+function createInputElm(labelMessage,type = "text"){
+  let input = document.createElement("input")
+  let label = document.createElement("label")
+  input.type = type
+
+  label.innerText = labelMessage
+   label.append(input)
+
+  return label
+}
 
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
@@ -13,7 +22,11 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 
 // 2. Do the same thing as above using string literal like `<h1>Hello</h1>`
 
-// Your code goes here
+function createInputElm(labelMessage,type = "text"){
+ let html = `<label> ${labelMessage} <input type ="${type}"></label>`
+
+ return html
+}
 
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
@@ -21,7 +34,17 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 
 // 3. Create a function named `createList` that accept and array of data like ['Mango', 'Apple', 'Banana'] and returns
 // the html for the link like <ul> <li>Mango</li>  <li>Apple</li>  <li>Banana</li> </ul>
-// Your code goes here
+
+function createList(datamessage = []){
+  let ul = document.createElement('ul');
+  datamessage.forEach(elm =>{
+    let li = document.createElement('li')
+    li.innerText = elm
+    ul.append(li)
+  })
+
+  return ul
+}
 
 // TEST
 createList(['ALABAMA', 'ALASKA', 'HAWAII', 'KENTUCKY']);
@@ -39,7 +62,22 @@ createList(['Afghanistan', 'Antarctica', 'Congo', 'Estonia']);
 </ul>
 */
 
-// Your code goes here
+function createTodoList(data = []){
+let html = `<ul>
+${data
+  .map(
+    (todo) => `
+  <li>
+    <p>${todo.name}</p>
+    <input type="checkbox" ${todo.isDone ? "checked": ""} name="" id="">
+    <span>X</span>
+  </li>`
+)
+.join("")}
+  </ul>`;
+
+return html;
+}
 
 // TEST
 createTodoList([
